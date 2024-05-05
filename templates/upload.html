@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Images</title>
+</head>
+<body>
+    <script>
+        function redirectToManage() {
+            window.location.href = "/manage";
+        }
+
+
+    </script>
+    <h1>Upload Images</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="image">Choose an image:</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+        <br>
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" required>
+        <br>
+        <input type="submit" value="Upload">
+        <input type="button" value="Search" onclick="redirectToManage()">
+    </form>
+    <p id="message"></p>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+</body>
+</html>

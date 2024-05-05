@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Student</title>
+</head>
+<body>
+    <h1>Manage Student</h1>
+
+    <form action="/manage" method="post">
+        <label for="student_name">Enter Student Name:</label>
+        <input type="text" id="student_name" name="student_name" required>
+        <button type="submit">Search</button>
+    </form>
+
+    <div id="student_details" style="margin-top: 20px;">
+        {% if student %}
+        <h2>Student Details</h2>
+        <p><strong>Name:</strong> {{ student.name }}</p>
+        <p><strong>FaceID:</strong> {{ student.face_id }}</p>
+        <!-- Add more details here as needed -->
+        {% endif %}
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    <a href="{{ url_for('upload_page') }}">Back to Upload</a>
+</body>
+</html>
